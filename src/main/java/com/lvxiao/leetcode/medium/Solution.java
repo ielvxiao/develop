@@ -250,6 +250,15 @@ public class Solution {
     }
 
     /**
+     * Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
+     * @param l1
+     * @param l2
+     * @return
+     */
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        return merge(l1, l2);
+    }
+    /**
      * 1916797311
      *
      * @param args
