@@ -258,6 +258,35 @@ public class Solution {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         return merge(l1, l2);
     }
+
+    private static class TreeNode{
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode(int x) { val = x; }
+    }
+    /*
+    Given a binary tree, return the inorder traversal of its nodes' values.
+     */
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        inorderHelper(root, result);
+        return result;
+    }
+
+    private void inorderHelper(TreeNode node, List<Integer> result) {
+        if (node == null) {
+            return;
+        }
+        if (node.left != null) {
+            inorderHelper(node.left, result);
+        }
+        result.add(node.val);
+        inorderHelper(node.right, result);
+    }
     /**
      * 1916797311
      *
