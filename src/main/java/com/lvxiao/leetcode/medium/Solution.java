@@ -19,7 +19,7 @@ class Node {
         next = _next;
         random = _random;
     }
-};
+}
 
 public class Solution {
 
@@ -141,11 +141,124 @@ public class Solution {
         return dummy.next;
     }
 
+    /*
+    https://leetcode.com/problems/unique-paths-ii/
+     */
+    public int uniquePaths(int m, int n) {
+        int[][] dp = new int[m][n];
+        for (int i = 0; i < m; i++) {
+            dp[i][0] = 1;
+        }
+        for (int i = 0; i < n; i++) {
+            dp[0][i] = 1;
+        }
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+            }
+        }
+        return dp[m - 1][n - 1];
+    }
+
+    /*
+    https://leetcode.com/problems/unique-paths-ii/
+     */
+    public int uniquePathsWithObstacles(int[][] obstacleGrid) {
+        int[][] dp = new int[obstacleGrid.length][obstacleGrid[0].length];
+        for (int i = 0; i < obstacleGrid.length; i++) {
+            if (obstacleGrid[i][0] == 1) {
+                dp[i][0] = -1;
+                break;
+            }
+            dp[i][0] = 1;
+        }
+        for (int i = 0; i < obstacleGrid[0].length; i++) {
+            if (obstacleGrid[0][i] == 1) {
+                dp[0][i] = -1;
+                break;
+            }
+            dp[0][i] = 1;
+        }
+        for (int i = 1; i < obstacleGrid.length; i++) {
+            for (int j = 1; j < obstacleGrid[0].length; j++) {
+                if (obstacleGrid[i][j] == 1) {
+                    dp[i][j] = -1;
+                    continue;
+                }
+                if (dp[i - 1][j] == -1) {
+                    dp[i][j] = dp[i][j - 1];
+                } else if (dp[i][j - 1] == -1) {
+                    dp[i][j] = dp[i - 1][j];
+                } else {
+                    dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+                }
+
+            }
+        }
+        return dp[obstacleGrid.length - 1][obstacleGrid[0].length - 1] == -1 ? 0 : dp[obstacleGrid.length - 1][obstacleGrid[0].length - 1];
+    }
+
+    /**
+     * https://leetcode.com/problems/sort-list/discuss/46714/Java-merge-sort-solution
+     * @param head
+     * @return
+     */
+    public ListNode sortList(ListNode head) {
+        if (head == null || head.next == null)
+            return head;
+
+        // step 1. cut the list to two halves
+        ListNode prev = null, slow = head, fast = head;
+
+        while (fast != null && fast.next != null) {
+            prev = slow;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        prev.next = null;
+
+        // step 2. sort each half
+        ListNode l1 = sortList(head);
+        ListNode l2 = sortList(slow);
+
+        // step 3. merge l1 and l2
+        return merge(l1, l2);
+    }
+
+    ListNode merge(ListNode l1, ListNode l2) {
+        ListNode l = new ListNode(0), p = l;
+
+        while (l1 != null && l2 != null) {
+            if (l1.val < l2.val) {
+                p.next = l1;
+                l1 = l1.next;
+            } else {
+                p.next = l2;
+                l2 = l2.next;
+            }
+            p = p.next;
+        }
+
+        if (l1 != null)
+            p.next = l1;
+
+        if (l2 != null)
+            p.next = l2;
+
+        return l.next;
+    }
+
+    /**
+     * 1916797311
+     *
+     * @param args
+     */
     public static void main(String[] args) {
-        ListNode node = new ListNode(0);
-        node.next = new ListNode(1);
-        node.next.next = new ListNode(2);
-        node.next.next.next = new ListNode(3);
-        new Solution().rotateRight(node, 10);
+        ListNode listNode = new ListNode(4);
+        listNode.next = new ListNode(2);
+        listNode.next.next = new ListNode(1);
+        listNode.next.next.next = new ListNode(3);
+        new Solution().sortList(listNode);
     }
 }
