@@ -200,6 +200,7 @@ public class Solution {
 
     /**
      * https://leetcode.com/problems/sort-list/discuss/46714/Java-merge-sort-solution
+     *
      * @param head
      * @return
      */
@@ -251,6 +252,7 @@ public class Solution {
 
     /**
      * Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
+     *
      * @param l1
      * @param l2
      * @return
@@ -259,12 +261,16 @@ public class Solution {
         return merge(l1, l2);
     }
 
-    private static class TreeNode{
+    private static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
-        TreeNode(int x) { val = x; }
+
+        TreeNode(int x) {
+            val = x;
+        }
     }
+
     /*
     Given a binary tree, return the inorder traversal of its nodes' values.
      */
@@ -287,6 +293,33 @@ public class Solution {
         result.add(node.val);
         inorderHelper(node.right, result);
     }
+
+    /*
+    96. Unique Binary Search Trees
+     */
+
+
+    /**
+     * 95. Unique Binary Search Trees II
+     *
+     * @param n
+     * @return
+     */
+    public int numTrees(int n) {
+        int[] memo = new int[n+1];
+        memo[0] = 1;
+        return numTrees(n, memo);
+    }
+
+    private int numTrees(int n, int[] memo) {
+        if(memo[n] != 0) return memo[n];
+        for(int i=1; i<=n; i++) {
+            memo[n] += numTrees(i-1, memo) * numTrees(n-i, memo);
+        }
+        return memo[n];
+    }
+
+
     /**
      * 1916797311
      *
@@ -297,6 +330,6 @@ public class Solution {
         listNode.next = new ListNode(2);
         listNode.next.next = new ListNode(1);
         listNode.next.next.next = new ListNode(3);
-        new Solution().sortList(listNode);
+        System.out.println(new Solution().numTrees(3));
     }
 }
