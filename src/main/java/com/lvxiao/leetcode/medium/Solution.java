@@ -297,7 +297,31 @@ public class Solution {
     /*
     96. Unique Binary Search Trees
      */
+    public List<TreeNode> generateTrees(int n) {
+        return generateTreesHelper(1, n);
+    }
 
+    private List<TreeNode> generateTreesHelper(int start, int end) {
+        List<TreeNode> res = new ArrayList<>();
+        if (start > end) {
+            res.add(null);
+            return res;
+        }
+
+        for (int i = start; i <= end; i++) {
+            List<TreeNode> leftSubtrees = generateTreesHelper(start, i - 1);
+            List<TreeNode> rightSubtrees = generateTreesHelper(i + 1, end);
+            for (TreeNode left : leftSubtrees) {
+                for (TreeNode right : rightSubtrees) {
+                    TreeNode root = new TreeNode(i);
+                    root.left = left;
+                    root.right = right;
+                    res.add(root);
+                }
+            }
+        }
+        return res;
+    }
 
     /**
      * 95. Unique Binary Search Trees II
