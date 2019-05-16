@@ -1,5 +1,6 @@
 package kafka;
 
+import lombok.extern.log4j.Log4j2;
 import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
@@ -13,15 +14,15 @@ import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author lvxiao
  * @date 2019/5/6
  */
+@Log4j2
 public class KafkaTest {
 
-    private static String topic = "testHello";
+    private static String topic = "demo1";
 
     private Producer<String, String> producer;
 
@@ -49,13 +50,18 @@ public class KafkaTest {
 
     @Test
     public void Produce() {
-        for (int i = 0; i < 200; i++) {
+        for (int i = 0; i < 10000; i++) {
             String msg = "这是消息" + i;
             //send方法是异步的。当它被调用时，它会将消息记录添加到待发送缓冲区并立即返回。
             //使用这种方式可以使生产者聚集一批消息记录后一起发送，从而提高效率。
             Future<RecordMetadata> future = producer.send(new ProducerRecord<String, String>(topic, msg));
             try {
-                System.out.println(i + "的offsert是" + future.get().offset());
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            try {
+                log.error(i + "的offsert是" + future.get().offset());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
@@ -80,8 +86,7 @@ public class KafkaTest {
         while (true) {
             ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
             for (ConsumerRecord<String, String> record : records) {
-                System.out.printf("offset = %d, value = %s", record.offset(), record.value());
-                System.out.println();
+                log.error("offset = %d, value = %s", record.offset(), record.value());
             }
         }
     }
@@ -115,7 +120,7 @@ public class KafkaTest {
 
     private void insertIntoDb(List<ConsumerRecord<String, String>> buffer) {
         for (ConsumerRecord<String, String> record : buffer) {
-            System.out.printf("插入数据库:offset = %d, key = %s, value = %s%n", record.offset(), record.key(), record.value());
+            log.error("插入数据库:offset ={}, key = {}, value = {}", record.offset(), record.key(), record.value());
         }
     }
 }
