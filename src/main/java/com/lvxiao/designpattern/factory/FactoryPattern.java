@@ -1,4 +1,4 @@
-package com.lvxiao.designpattern;
+package com.lvxiao.designpattern.factory;
 
 /**
  * 工厂模式：
