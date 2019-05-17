@@ -307,16 +307,15 @@ public class Solution {
             res.add(null);
             return res;
         }
-
         for (int i = start; i <= end; i++) {
-            List<TreeNode> leftSubtrees = generateTreesHelper(start, i - 1);
-            List<TreeNode> rightSubtrees = generateTreesHelper(i + 1, end);
-            for (TreeNode left : leftSubtrees) {
-                for (TreeNode right : rightSubtrees) {
-                    TreeNode root = new TreeNode(i);
-                    root.left = left;
-                    root.right = right;
-                    res.add(root);
+            List<TreeNode> leftBand = generateTreesHelper(start, i - 1);
+            List<TreeNode> rightBand = generateTreesHelper(i + 1, end);
+            for (TreeNode left : leftBand) {
+                for (TreeNode right : rightBand) {
+                    TreeNode node = new TreeNode(i);
+                    node.left = left;
+                    node.right = right;
+                    res.add(node);
                 }
             }
         }
@@ -354,6 +353,6 @@ public class Solution {
         listNode.next = new ListNode(2);
         listNode.next.next = new ListNode(1);
         listNode.next.next.next = new ListNode(3);
-        System.out.println(new Solution().numTrees(3));
+        System.out.println(new Solution().generateTrees(3));
     }
 }

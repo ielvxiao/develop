@@ -50,7 +50,7 @@ public class KafkaTest {
 
     @Test
     public void Produce() {
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 10; i++) {
             String msg = "这是消息" + i;
             //send方法是异步的。当它被调用时，它会将消息记录添加到待发送缓冲区并立即返回。
             //使用这种方式可以使生产者聚集一批消息记录后一起发送，从而提高效率。
@@ -61,7 +61,7 @@ public class KafkaTest {
                 e.printStackTrace();
             }
             try {
-                log.error(i + "的offsert是" + future.get().offset());
+                log.info(i + "的offsert是" + future.get().offset());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
