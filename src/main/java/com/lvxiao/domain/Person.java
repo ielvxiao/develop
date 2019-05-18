@@ -19,6 +19,7 @@ public class Person {
     private int age;
 
     public static void main(String[] args) {
+
         Person p = new Person();
         p.setId(null);
     }
