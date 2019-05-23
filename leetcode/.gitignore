@@ -1,9 +1,0 @@
-# Created by .ignore support plugin (hsz.mobi)
-### java template
-# User-specific stuff
-*.iml
-/.idea
-**/target/
-*.class
-*.jar
-**/rebel.xml
