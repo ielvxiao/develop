@@ -19,6 +19,7 @@
         <module>leetcode</module>
         <module>reflect</module>
         <module>designpattern</module>
+        <module>multithread</module>
     </modules>
 
     <dependencies>
