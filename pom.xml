@@ -21,6 +21,7 @@
         <module>designpattern</module>
         <module>multithread</module>
         <module>spring</module>
+        <module>jvm</module>
     </modules>
 
     <dependencies>
