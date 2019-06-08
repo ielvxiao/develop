@@ -5,7 +5,8 @@ import com.lvxiao.ListNode;
 /**
  * 142. Linked List Cycle II
  * @author lvxiao
- * @date 2019/6/4
+ * @version V1.0
+ * @date 2019-06-03 22:55
  */
 public class DetectCycle {
     public ListNode detectCycle(ListNode head) {
@@ -14,34 +15,18 @@ public class DetectCycle {
         }
         ListNode slow = head;
         ListNode fast = head;
-        ListNode res = head;
-        ListNode tmp;
+        ListNode sslow = null;
+        ListNode tmp = null;
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
             if (slow == fast) {
                 tmp = slow;
-                if (tmp != null) {
-                    while (res != slow) {
-                        slow = slow.next;
-                        if (tmp == slow) {
-                            res = res.next;
-                        }
-                    }
-                }
-                return res;
             }
         }
+        if (tmp != null) {
+
+        }
         return null;
-    }
-
-    public static void main(String[] args) {
-        ListNode node = new ListNode(0);
-        node.next = new ListNode(1);
-        node.next.next = new ListNode(2);
-        node.next.next.next = new ListNode(3);
-        node.next.next.next.next = node.next;
-
-        new DetectCycle().detectCycle(node);
     }
 }
