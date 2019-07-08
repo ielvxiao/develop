@@ -1,6 +1,6 @@
 package com.lvxiao.problem98;
 
-import com.lvxiao.TreeNode;
+import com.lvxiao.DataStructHelper.TreeNode;
 
 /**
  * 98. Validate Binary Search Tree

@@ -1,6 +1,6 @@
 package com.lvxiao.problem142;
 
-import com.lvxiao.ListNode;
+import com.lvxiao.DataStructHelper.ListNode;
 
 /**
  * 142. Linked List Cycle II

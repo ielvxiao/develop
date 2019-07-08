@@ -1,6 +1,6 @@
 package com.lvxiao.problem99;
 
-import com.lvxiao.TreeNode;
+import com.lvxiao.DataStructHelper.TreeNode;
 import lombok.extern.log4j.Log4j2;
 
 /**
