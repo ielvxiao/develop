@@ -16,4 +16,7 @@ public class ReflectEntry {
     private Integer id;
 
 
+    private String test(String name) {
+        return "我是" + name;
+    }
 }

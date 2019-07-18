@@ -34,17 +34,46 @@ public class QuickSort {
                 arr[j] = t;
                 ++i;
                 --j;
-            } else if (i == j) {
-                ++i;
             }
         }
         qSort(arr, head, j);
         qSort(arr, i, tail);
     }
 
+    public static void exchange(int[] sum, int i, int j) {
+        int temp = sum[i];
+        sum[i] = sum[j];
+        sum[j] = temp;
+    }
+
+    /**
+     * 三路快排
+     * @param nums
+     * @param top
+     * @param tail
+     */
+    public static void quickSort3(int[] nums, int top, int tail) {
+        if (top >= tail) {
+            return;
+        }
+        int lt = top, gt = tail, i = top + 1;
+        int pivot = nums[top];
+        while (i <= gt) {
+            if (nums[i] > pivot) {
+                exchange(nums, i, gt--);
+            } else if (nums[i] < pivot) {
+                exchange(nums, i++, lt++);
+            } else {
+                i++;
+            }
+        }
+        quickSort3(nums, top, lt - 1);
+        quickSort3(nums, gt + 1, tail);
+    }
+
     public static void main(String[] args) {
         int[] arr = new int[]{8,7,10,3,9,11,12,13,14};
-        qSort(arr, 0, arr.length - 1);
+        quickSort3(arr, 0, arr.length - 1);
         System.out.println(Arrays.toString(arr));
     }
 }
