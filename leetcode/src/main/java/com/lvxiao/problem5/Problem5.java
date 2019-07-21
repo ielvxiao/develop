@@ -43,7 +43,34 @@ public class Problem5 {
         return sb.toString();
     }
 
+    /**
+     * dp方法，优化版
+     * 以i为
+     * @param s
+     * @return
+     */
+    public String longestPalindromeDp(String s) {
+        if (s.length() <= 1) {
+            return s;
+        }
+        int palindint = 1;
+        String res = s.substring(0,1);
+        boolean[][] dp = new boolean[s.length()][s.length()];
+        for (int i = 1; i < s.length(); i++) {
+            for (int j = 0; j < i; j++) {
+                if (s.charAt(i) == s.charAt(j) && (i - j <= 2 || dp[i-1][j+1])) {
+                    dp[i][j] = true;
+                    if (i - j + 1 > palindint) {
+                        palindint = i - j + 1;
+                        res = s.substring(j, i+1);
+                    }
+                }
+            }
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
-        System.out.println(new Problem5().longestPalindrome("tattarrattat"));
+        System.out.println(new Problem5().longestPalindromeDp("dfabacc"));
     }
 }
