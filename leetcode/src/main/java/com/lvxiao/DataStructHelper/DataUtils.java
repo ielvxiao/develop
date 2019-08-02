@@ -8,11 +8,11 @@ package com.lvxiao.DataStructHelper;
  */
 public class DataUtils {
     /**
-     * 构建BR-tree
+     * 构建ListNode结构
      * @param arr   数组
      * @return  返回ListNode结构
      */
-    public static ListNode binarySearchTree(int[] arr) {
+    public static ListNode listNodeCreate(int[] arr) {
         ListNode listNode = new ListNode(0);
         ListNode p = listNode;
         for (int i : arr) {
