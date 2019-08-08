@@ -43,6 +43,5 @@ public class Problem19 {
     }
 
     public static void main(String[] args) {
-        System.out.println(new Problem19().removeNthFromEnd(DataUtils.binarySearchTree(new int[]{1,2,3,4,5}), 2).val);
     }
 }
