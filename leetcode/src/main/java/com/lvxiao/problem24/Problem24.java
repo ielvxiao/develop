@@ -33,6 +33,5 @@ public class Problem24 {
     }
 
     public static void main(String[] args) {
-        new Problem24().swapPairs(DataUtils.binarySearchTree(new int[]{1, 2, 3, 4}));
     }
 }
