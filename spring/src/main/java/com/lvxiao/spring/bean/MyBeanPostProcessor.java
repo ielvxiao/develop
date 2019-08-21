@@ -14,7 +14,6 @@ public class MyBeanPostProcessor implements BeanPostProcessor {
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         if (bean instanceof LifeCycleBean) {
-
             System.out.println("10.执行postProcessBeforeInitialization()");
         }
         return bean;

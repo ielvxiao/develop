@@ -18,7 +18,7 @@ public class MyInstantiationAwareBeanPostProcessor extends InstantiationAwareBea
     @Override
     public Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) throws BeansException {
         if (beanName.equals("lifeCycleBean")) {
-            System.out.println("2.执行postProcessBeforeInstantiation()fangfa");
+            System.out.println("2.执行postProcessBeforeInstantiation()");
         }
         return null;
     }

@@ -15,6 +15,8 @@ import org.springframework.context.annotation.Configuration;
 public class LifeCycleBeanConfig {
     @Bean(initMethod = "init", destroyMethod = "myDestroy")
     public LifeCycleBean lifeCycleBean() {
-        return new LifeCycleBean();
+        LifeCycleBean lifeCycleBean = new LifeCycleBean();
+        lifeCycleBean.setName("set方法设置了一个名字");
+        return lifeCycleBean;
     }
 }
