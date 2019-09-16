@@ -1,0 +1,64 @@
+version: '3'
+services:
+    es-master:
+        image:  elasticsearch:6.4.3
+        container_name: es-master
+        restart: always
+        volumes:
+            - ./master/data:/usr/share/elasticsearch/data:rw
+            - ./master/conf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+            - ./master/logs:/user/share/elasticsearch/logs:rw
+        ports:
+            - "9200:9200"
+            - "9300:9300"
+        networks:
+            app_net:
+                ipv4_address: 172.19.0.2
+    es-node1:
+        image:  elasticsearch:6.4.3
+        container_name: es-node1
+        restart: always
+        volumes:
+            - ./node1/data:/usr/share/elasticsearch/data:rw
+            - ./node1/conf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+            - ./node1/logs:/user/share/elasticsearch/logs:rw
+        networks:
+            app_net:
+                ipv4_address: 172.19.0.3
+    es-node2:
+        image:  elasticsearch:6.4.3
+        container_name: es-node2
+        restart: always
+        volumes:
+            - ./node2/data:/usr/share/elasticsearch/data:rw
+            - ./node2/conf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+            - ./node2/logs:/user/share/elasticsearch/logs:rw
+        networks:
+            app_net:
+                ipv4_address: 172.19.0.4
+    es-head:
+        image: tobias74/elasticsearch-head:6
+        container_name: es-head
+        restart: always
+        ports:
+            - "9100:9100"
+        networks:
+            app_net:
+                ipv4_address: 172.19.0.5
+    # kibana:
+    #     image: kibana:6.4.3
+    #     container_name: kibana
+    #     ports:
+    #         - "5601:5601"
+    #     environment:
+    #         - "ELASTICSEARCH_URL=http://172.19.0.2:9200"
+    #     networks:
+    #         app_net:
+    #             ipv4_address: 172.19.0.6
+networks:
+    app_net:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                -   subnet: 172.19.0.0/16
