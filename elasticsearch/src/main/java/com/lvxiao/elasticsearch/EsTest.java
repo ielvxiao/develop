@@ -5,6 +5,9 @@ import com.alibaba.fastjson.JSONObject;
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.action.search.SearchRequestBuilder;
+import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.transport.TransportClient;
@@ -13,6 +16,12 @@ import org.elasticsearch.common.transport.TransportAddress;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.common.xcontent.XContentType;
+import org.elasticsearch.index.query.MatchPhraseQueryBuilder;
+import org.elasticsearch.index.query.MatchQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 
 import java.io.IOException;
@@ -175,51 +184,19 @@ public class EsTest {
 
 
     public static void main(String[] args) throws Exception {
-//        RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(new HttpHost("localhost", 9200, "http")));
-////Search请求
-//        SearchRequest searchRequest = new SearchRequest("people-2018-07-31");
-//
-//        //查询过滤条件
-//        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-//        searchSourceBuilder.query(QueryBuilders.termQuery("name","people1533031470255"));
-//        searchRequest.source(searchSourceBuilder);
-//        SearchResponse searchResponse = client.search(searchRequest);
-//
-//        SearchHits searchHits = searchResponse.getHits();
-//
-//        for (SearchHit hit : searchHits){
-//            System.out.println("index:"+hit.getIndex());
-//            System.out.println("type:"+hit.getType());
-//            System.out.println("id:"+hit.getId());
-//            System.out.println("sourceString:"+hit.getSourceAsString());
-//        }
-		/*TransportClient  client = getConnection();
-		System.out.println(client.toString());
-		System.out.println(client.nodeName());*/
-
-        EsTest t = new EsTest();
-
-	    t.add();
-//		t.get();
-
-//		t.update();
-//		t.get();
-
-//		t.delete();
-//		t.get("data","person","1");
-
-//		t.addJsonstr();
-//		t.get("chat", "msg","5jbh7GYB_P4tFfCC1ruQ");
-//		t.get("chat", "msg","5zbl7GYB_P4tFfCCpLt1");
-
-//		t.addJSON();
-        String index = "data";   // 索引值
-        String type ="person";   // 类型
-        String id="2";           // id值
-        t.get(index, type,id);
-
-//		t.addMap();
-//		t.get("momo", "msg","1");
+        MatchPhraseQueryBuilder matchPhraseQueryBuilder = QueryBuilders.matchPhraseQuery("price", 260);
+        MatchQueryBuilder builder = QueryBuilders.matchQuery("brand", "哥");
+        QueryBuilder queryBuilder = QueryBuilders.boolQuery().should(matchPhraseQueryBuilder).must(builder);
+        TransportClient client = getConnection();
+        SearchRequestBuilder requestBuilder = client.prepareSearch("commodity")
+                .setTypes("commodity")
+                .setSearchType(SearchType.DFS_QUERY_THEN_FETCH)
+                .setQuery(queryBuilder);
+        SearchResponse searchResponse = requestBuilder.setExplain(true).get();
+        SearchHits searchHits = searchResponse.getHits();
+        for (SearchHit searchHit : searchHits.getHits()) {
+            System.out.println(searchHit.getSourceAsString());
+        }
     }
 
 }
