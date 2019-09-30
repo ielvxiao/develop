@@ -36,15 +36,15 @@ services:
         networks:
             app_net:
                 ipv4_address: 172.19.0.4
-    es-head:
-        image: tobias74/elasticsearch-head:6
-        container_name: es-head
-        restart: always
-        ports:
-            - "9100:9100"
-        networks:
-            app_net:
-                ipv4_address: 172.19.0.5
+    #    es-head:
+    #        image: tobias74/elasticsearch-head:6
+    #        container_name: es-head
+    #        restart: always
+    #        ports:
+    #            - "9100:9100"
+    #        networks:
+    #            app_net:
+    #                ipv4_address: 172.19.0.5
     kibana:
         image: kibana:6.4.3
         container_name: kibana
@@ -55,6 +55,16 @@ services:
         networks:
             app_net:
                 ipv4_address: 172.19.0.6
+    cerebro:
+        image: lmenezes/cerebro:0.8.3
+        container_name: cerebro
+        ports:
+            - "9000:9000"
+        command:
+            - -Dhosts.0.host=http://172.19.0.2:9200
+        networks:
+            app_net:
+                ipv4_address: 172.19.0.7
 networks:
     app_net:
         driver: bridge
