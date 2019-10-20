@@ -1,4 +1,4 @@
-package problem10;
+package com.lvxiao.problem10;
 
 /**
  * @author lvxiao
