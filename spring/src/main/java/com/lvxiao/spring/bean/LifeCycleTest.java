@@ -1,7 +1,5 @@
 package com.lvxiao.spring.bean;
 
-import com.lvxiao.spring.bean.LifeCycleBean;
-import com.lvxiao.spring.bean.LifeCycleBeanConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
@@ -14,6 +12,8 @@ public class LifeCycleTest {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(LifeCycleBeanConfig.class);
         LifeCycleBean bean = (LifeCycleBean) context.getBean("lifeCycleBean");
         System.out.println(bean.getName());
+        AopTarget aopTarget = (AopTarget) context.getBean("aopTarget");
+        aopTarget.testAop("aaa");
         context.close();
     }
 }

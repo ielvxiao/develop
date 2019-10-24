@@ -1,9 +1,9 @@
 package com.lvxiao.spring.bean;
 
-import com.lvxiao.spring.bean.LifeCycleBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 /**
  * @author lvxiao
@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @ComponentScan(basePackages = "com.lvxiao.spring.bean")
 @Configuration
+@EnableAspectJAutoProxy
 public class LifeCycleBeanConfig {
     @Bean(initMethod = "init", destroyMethod = "myDestroy")
     public LifeCycleBean lifeCycleBean() {
