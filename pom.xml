@@ -25,6 +25,7 @@
         <module>redis</module>
         <module>computerscience</module>
         <module>elasticsearch</module>
+        <module>zookeeper</module>
     </modules>
 
     <dependencies>
