@@ -35,9 +35,12 @@ public class ZookeeperConnection {
 
     public static void main(String[] args) throws InterruptedException, KeeperException {
         ZooKeeper zookeeper = getConnection();
-//        zookeeper.create("/mic","0".getBytes(),ZooDefs.Ids. OPEN_ACL_UNSAFE,CreateMode.PERSISTENT); //创建节点
+      //  zookeeper.create("/mic","0".getBytes(),ZooDefs.Ids. OPEN_ACL_UNSAFE,CreateMode.PERSISTENT); //创建节点
 
-        zookeeper.exists("/mic",true); //注册监听
-        zookeeper.setData("/mic", "1".getBytes(),-1) ; //修改节点的值触发监听
+//        zookeeper.exists("/mic",true); //注册监听
+//        zookeeper.setData("/mic", "1".getBytes(),-1) ; //修改节点的值触发监听
+        zookeeper.addAuthInfo("digest", "foo:true".getBytes()); //设置权限
+//        zookeeper.create("/auth-zk", "init".getBytes(), ZooDefs.Ids.CREATOR_ALL_ACL, CreateMode.PERSISTENT); //创建节点
+        System.out.println(zookeeper.getData("/auth-zk", false, null));
     }
 }
