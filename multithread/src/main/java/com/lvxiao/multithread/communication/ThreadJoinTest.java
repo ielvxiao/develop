@@ -28,10 +28,10 @@ public class ThreadJoinTest extends Thread {
         System.out.println(Thread.currentThread().getName()+"主线程运行开始!");
         ThreadJoinTest mTh1=new ThreadJoinTest("A");
         ThreadJoinTest mTh2=new ThreadJoinTest("B");
-        mTh1.start();
         mTh2.start();
-        mTh1.join();
-        mTh2.join();
+        mTh2.join(); //mTh2执行完毕后再执行别的线程
+        mTh1.start();
+        mTh1.join(); //如果不加入该行代码，则下方打印内容可能提前
         System.out.println(Thread.currentThread().getName()+ "主线程运行结束!");
 
     }
