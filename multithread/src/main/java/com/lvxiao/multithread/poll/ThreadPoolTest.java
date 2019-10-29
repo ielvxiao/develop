@@ -51,7 +51,7 @@ public class ThreadPoolTest {
                 10,
                 30,
                 30,
-                TimeUnit.MINUTES,
+                TimeUnit.MILLISECONDS,
                 new ArrayBlockingQueue<>(10),
                 new CustomThreadFactory(),
                 new CustomRejectedExecutionHandler()
@@ -61,10 +61,14 @@ public class ThreadPoolTest {
     public ThreadPoolExecutor getPool() {
         return this.pool;
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         ThreadPoolTest test = new ThreadPoolTest();
         test.init();
         ThreadPoolExecutor poolExecutor = test.getPool();
+        /**
+         * 是否让核心线程失效~如果设置为true，则可以让核心线程也像最大线程一样，利用keepAliveTime管理核心线程是否销毁
+         */
+        poolExecutor.allowCoreThreadTimeOut(true);
         for (int i = 0; i < 100; i++) {
             System.out.println("提交第"+i+"个任务");
             poolExecutor.execute(()->
@@ -79,6 +83,10 @@ public class ThreadPoolTest {
                 }
             });
         }
+        Thread.sleep(10000);
+        System.out.println("主线程执行完毕=====poolSize:"+poolExecutor.getPoolSize()
+                +"。corePoolSize："+poolExecutor.getCorePoolSize()+"。activeCount："+poolExecutor.getActiveCount()+"。queueSize："+poolExecutor.getQueue().size());        Thread.sleep(1000);
+
         poolExecutor.shutdown();
     }
 }
