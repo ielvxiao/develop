@@ -32,7 +32,21 @@ public class Problem96 {
         return dp[n];
     }
 
+    /**
+     * catalan公式法
+     * f(n) = f(0)f(n-1) + f(1)f(n-2).... + f(n-2)f(1) + f(n-1)f(0)的通项公式是
+     * f(n+1) =(4n+2)/(n+2) f(n)
+     * @param n
+     * @return
+     */
+    public int numTreesFunction(int n) {
+        long res = 1; //使用long防止溢出
+        for (int i = 1; i < n; i++) {
+            res = res * (4 * i + 2) / (i + 2);
+        }
+        return (int)res;
+    }
     public static void main(String[] args) {
-        System.out.println(new Problem96().numTrees(3));
+        System.out.println(new Problem96().numTreesFunction(9));
     }
 }
