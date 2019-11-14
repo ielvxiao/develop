@@ -22,7 +22,7 @@ public class Base {
             process();
         }
     }
-    public void process(){
+    public static void process(){
         System.out.println("process");
     }
 }
