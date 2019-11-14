@@ -11,5 +11,21 @@
 
     <artifactId>jvm</artifactId>
 
+    <properties>
+        <jmh.version>1.22</jmh.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-core</artifactId>
+            <version>${jmh.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-generator-annprocess</artifactId>
+            <version>${jmh.version}</version>
+        </dependency>
+
+    </dependencies>
 
 </project>
