@@ -6,3 +6,6 @@ java中使用特别多的一个类
 但是问题就是每次循环都要new一次StringBuilder，所以效率不如直接在外层使用StringBuilder。
 但是不会出现字符串常量池有很多的情况。
 ### 我们可以通过基准测试来对比各种情况下的性能，可参考`StringConcatenationBenchmark`
+
+## intern()方法
+>https://blog.csdn.net/u013366617/article/details/83618361
