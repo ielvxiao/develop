@@ -14,20 +14,20 @@ import java.util.concurrent.ConcurrentHashMap;
 class Break {
     public static void main(String[] args) {
         for (int i = 100; i < 1000; i++) {
-            MapTest.map.put(i, i);
-            MapTest.concurrentHashMap.put(i, i);
+            ConcurrentHashMapTest.map.put(i, i);
+            ConcurrentHashMapTest.concurrentHashMap.put(i, i);
         }
     }
 }
-public class MapTest {
+public class ConcurrentHashMapTest {
     public static ConcurrentHashMap<Integer, Integer> concurrentHashMap = new ConcurrentHashMap<>();
 
     public static HashMap<Integer, Integer> map = new HashMap<>();
 
     public static void main(String[] args) {
         for (int i = 0; i < 1000; i++) {
-            MapTest.map.put(i, i);
-            MapTest.concurrentHashMap.put(i, i);
+            ConcurrentHashMapTest.map.put(i, i);
+            ConcurrentHashMapTest.concurrentHashMap.put(i, i);
         }
         new Thread(() -> {
             //换成hashmap会报错
@@ -42,8 +42,8 @@ public class MapTest {
         }).start();
         new Thread(() -> {
             for (int i = 0; i < 1000; i++) {
-                MapTest.map.put(1000-i, 1000-i);
-                MapTest.concurrentHashMap.put(i, i);
+                ConcurrentHashMapTest.map.put(1000-i, 1000-i);
+                ConcurrentHashMapTest.concurrentHashMap.put(i, i);
             }
         }).start();
     }
