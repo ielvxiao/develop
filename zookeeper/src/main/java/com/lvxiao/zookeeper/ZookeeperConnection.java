@@ -16,11 +16,11 @@ public class ZookeeperConnection {
 
 
 
-    private static ZooKeeper getConnection() {
+    public static ZooKeeper getConnection() {
         ZooKeeper zooKeeper = null;
         try {
             zooKeeper = new ZooKeeper("localhost:2181", 100000, event -> {
-                    System.out.println("watch====="+event.getType());
+                    System.out.println("收到事件通知：" + event.getState() + "类型" + event.getType()+"路径信息:"+event.getPath());
             });
 
         } catch (IOException e) {
