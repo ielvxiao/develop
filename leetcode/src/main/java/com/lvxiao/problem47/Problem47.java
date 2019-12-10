@@ -13,23 +13,28 @@ public class Problem47 {
     public List<List<Integer>> permuteUnique(int[] nums) {
         List<List<Integer>> list = new ArrayList<>();
         Arrays.sort(nums);
-        backtrack(list, new ArrayList<>(), nums, new boolean[nums.length]);
+        boolean[] used = new boolean[nums.length];
+        backTracing(nums, new ArrayList<>(), list, used);
         return list;
     }
 
-    private void backtrack(List<List<Integer>> list, List<Integer> tempList, int [] nums, boolean [] used){
-        if(tempList.size() == nums.length){
-            list.add(new ArrayList<>(tempList));
-        } else{
-            for(int i = 0; i < nums.length; i++){
-                if(used[i] || i > 0 && nums[i] == nums[i-1] && !used[i - 1]) continue;
+    private void backTracing(int[] nums, List<Integer> tmp, List<List<Integer>> list, boolean[] used) {
+        if (tmp.size() == nums.length) {
+            list.add(new ArrayList<>(tmp));
+        } else {
+            for (int i = 0; i < nums.length; i++) {
+                if (used[i] || i > 0 && nums[i] == nums[i - 1] && used[i - 1]) continue;
+                tmp.add(nums[i]);
                 used[i] = true;
-                tempList.add(nums[i]);
-                backtrack(list, tempList, nums, used);
+                backTracing(nums, tmp, list, used);
                 used[i] = false;
-                tempList.remove(tempList.size() - 1);
+                tmp.remove(tmp.size() - 1);
             }
         }
     }
 
+    public static void main(String[] args) {
+        List<List<Integer>> list = new Problem47().permuteUnique(new int[]{1, 1, 2});
+        list.forEach(System.out::println);
+    }
 }
