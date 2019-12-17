@@ -5,11 +5,23 @@ package com.lvxiao.designpattern.singleton;
  * @version V1.0
  * @date 2019-07-18 15:01
  */
+class Test{
+    public static void main(String[] args) {
+        SingletonEnum.SINGLETON_ENUM1.happy();
+    }
+}
 enum SingletonEnum{
     /**
-     * 创建枚举默认就是线程安全的，所以不需要担心double checked locking，而且还能防止反序列化导致重新创建新的对象。
+     * ①、线程安全问题。因为Java虚拟机在加载枚举类的时候，会使用ClassLoader的loadClass方法，这个方法使用了同步代码块来保证线程安全。
+     *
+     * ②、避免反序列化破坏单例。因为枚举的反序列化并不通过反射实现。
      */
-    SINGLETON_ENUM
+    SINGLETON_ENUM,
+    SINGLETON_ENUM1;
+
+    public void happy() {
+        System.out.println("I'm very happy!");
+    }
 }
 public class Singleton {
     private static Singleton ourInstance;
