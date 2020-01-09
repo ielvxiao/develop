@@ -1,9 +1,7 @@
 package com.lvxiao.spring.bean;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.*;
 
 /**
  * @author lvxiao
@@ -19,5 +17,16 @@ public class LifeCycleBeanConfig {
         LifeCycleBean lifeCycleBean = new LifeCycleBean();
         lifeCycleBean.setName("set方法设置了一个名字");
         return lifeCycleBean;
+    }
+
+    @Bean
+    public LifeCycleBean test() {
+        return new LifeCycleBean();
+    }
+    
+    //如果有多个LifeCycleBean而且参数名与它们不同，则需要通过@Qualifier区分
+    @Bean
+    public InBean inBean(@Qualifier("test") LifeCycleBean bean) {
+        return new InBean(bean);
     }
 }

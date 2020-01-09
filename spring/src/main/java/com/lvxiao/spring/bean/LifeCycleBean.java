@@ -1,5 +1,6 @@
 package com.lvxiao.spring.bean;
 
+import lombok.ToString;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.*;
 import org.springframework.context.ApplicationContext;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
  * @version V1.0
  * @date 2019-08-19 23:48
  */
+@ToString
 public class LifeCycleBean implements BeanFactoryAware, BeanNameAware,
         InitializingBean, DisposableBean, ApplicationContextAware {
     private String name;

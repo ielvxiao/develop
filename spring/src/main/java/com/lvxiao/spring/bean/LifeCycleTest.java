@@ -14,6 +14,8 @@ public class LifeCycleTest {
         System.out.println(bean.getName());
         AopTarget aopTarget = (AopTarget) context.getBean("aopTarget");
         aopTarget.testAop("aaa");
+        InBean inBean = (InBean) context.getBean("inBean");
+        System.out.println(inBean.toString());
         context.close();
     }
 }
