@@ -1,7 +1,9 @@
 package com.lvxiao.spring.boot.config;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.PropertyResolver;
 
 /**
  * @author lvxiao
@@ -9,6 +11,11 @@ import org.springframework.context.annotation.Configuration;
  * @date 2020/1/9 2:15 下午
  */
 @Configuration
-@EnableAutoConfiguration
+@ConditionalOnClass(PropertyResolver.class)
 public class AutoConfigTest {
+
+    @Bean
+    public EnvConfig envConfig() {
+        return new EnvConfig();
+    }
 }
