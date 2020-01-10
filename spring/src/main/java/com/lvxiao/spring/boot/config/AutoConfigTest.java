@@ -10,7 +10,7 @@ import org.springframework.core.env.PropertyResolver;
  * @version V1.0
  * @date 2020/1/9 2:15 下午
  */
-@Configuration
+//@Configuration 如果在spring.factories配置了该类就不用使用Configuration
 @ConditionalOnClass(PropertyResolver.class)
 public class AutoConfigTest {
 
