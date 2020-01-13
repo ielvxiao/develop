@@ -2,8 +2,10 @@ package com.lvxiao.multithread.collection.queue;
 
 import java.util.Random;
 import java.util.UUID;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author lvxiao
@@ -28,7 +30,7 @@ public class SynchronousQueueExample {
                     String data = UUID.randomUUID().toString();
                     System.out.println("Put: " + data);
                     blockingQueue.put(data);
-                    Thread.sleep(1000);
+                    Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -61,9 +63,7 @@ public class SynchronousQueueExample {
 
     }
 
-    public static void main(String[] args) {
-        final BlockingQueue<String> synchronousQueue = new SynchronousQueue<String>();
-
+    private static void SynchronousQueueTest(BlockingQueue<String> synchronousQueue) {
         SynchronousQueueProducer queueProducer = new SynchronousQueueProducer(
                 synchronousQueue);
         new Thread(queueProducer).start();
@@ -76,5 +76,21 @@ public class SynchronousQueueExample {
                 synchronousQueue);
         new Thread(queueConsumer2).start();
 
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        BlockingQueue<String> synchronousQueue = new SynchronousQueue<String>();
+        SynchronousQueueTest(synchronousQueue); //如果传入的是SynchronousQueue则，输出是一个put一个get
+        /*
+        传入ArrayBlockingQueue则该队列可以最多储存10个任务，超过该任务数，put阻塞。如果队列为空，则take阻塞。
+         */
+        ArrayBlockingQueue<String> arrayBlockingQueue = new ArrayBlockingQueue<String>(10);
+        SynchronousQueueProducer queueProducer = new SynchronousQueueProducer(
+                arrayBlockingQueue);
+        new Thread(queueProducer).start();
+        TimeUnit.MILLISECONDS.sleep(1000);
+        SynchronousQueueConsumer queueConsumer2 = new SynchronousQueueConsumer(
+                arrayBlockingQueue);
+        new Thread(queueConsumer2).start();
     }
 }
