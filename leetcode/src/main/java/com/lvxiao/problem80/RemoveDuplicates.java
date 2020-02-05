@@ -2,7 +2,6 @@ package com.lvxiao.problem80;
 
 /**
  * 80. Remove Duplicates from Sorted Array II
- * 看不懂什么意思。垃圾题
  * @author lvxiao
  * @version V1.0
  * @date 2019-05-30 23:09
