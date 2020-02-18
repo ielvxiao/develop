@@ -4,6 +4,7 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
+ * 线程池源码解读：https://www.cnblogs.com/yougewe/p/12267274.html
  * @author lvxiao
  * @version V1.0
  * @date 2019/9/30 2:03 下午
