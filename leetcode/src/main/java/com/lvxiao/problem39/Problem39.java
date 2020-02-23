@@ -1,6 +1,5 @@
 package com.lvxiao.problem39;
 
-import sun.security.provider.Sun;
 
 import java.util.ArrayList;
 import java.util.Arrays;
