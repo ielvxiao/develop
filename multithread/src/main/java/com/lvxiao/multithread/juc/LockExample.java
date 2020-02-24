@@ -94,9 +94,7 @@ public class LockExample implements Lock {
                     return true;
                 }
                 return false;
-            } else {
-                return true;
-            }
+            } else return isHeldExclusively();
         }
 
         @Override
