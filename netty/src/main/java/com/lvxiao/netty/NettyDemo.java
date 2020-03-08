@@ -12,6 +12,10 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.util.CharsetUtil;
 
 import java.net.InetSocketAddress;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * @author lvxiao
@@ -79,6 +83,7 @@ public class NettyDemo {
     public static class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
         @Override
         public void channelActive(ChannelHandlerContext ctx) throws Exception {
+            LinkedHashMap<Integer, Integer> map = new LinkedHashMap<>();
             ctx.writeAndFlush(Unpooled.copiedBuffer("Netty rocks!", CharsetUtil.UTF_8));    //当被通知channel活跃的时候返回消息
         }
 
