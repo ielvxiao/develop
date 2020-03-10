@@ -18,9 +18,8 @@ import java.util.concurrent.Executor;
 @EnableAsync
 @Configuration
 @ComponentScan(basePackages = "com.lvxiao.spring.async")
-public class AsyncTestConfig  implements AsyncConfigurer{
+public class AsyncTestConfig{
 
-    @Override
     @Bean
     public Executor getAsyncExecutor() {
         ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
@@ -42,10 +41,6 @@ public class AsyncTestConfig  implements AsyncConfigurer{
         return taskExecutor;
     }
 
-    @Override
-    public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
-        return null;
-    }
 
 //    @Async
 //    public void printMessage() throws InterruptedException {
