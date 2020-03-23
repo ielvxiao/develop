@@ -1,4 +1,4 @@
-package com.lvxiao.dubbo.manual.server;
+package com.lvxiao.dubbo.manual.raw.server;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;

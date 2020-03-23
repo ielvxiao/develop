@@ -1,7 +1,7 @@
-package com.lvxiao.dubbo.manual.service.impl;
+package com.lvxiao.dubbo.manual.raw.service.impl;
 
-import com.lvxiao.dubbo.manual.domain.Student;
-import com.lvxiao.dubbo.manual.service.CalculateService;
+import com.lvxiao.dubbo.manual.raw.domain.Student;
+import com.lvxiao.dubbo.manual.raw.service.CalculateService;
 
 /**
  * @author lvxiao

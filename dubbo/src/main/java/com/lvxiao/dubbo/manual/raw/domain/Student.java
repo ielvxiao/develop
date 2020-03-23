@@ -1,4 +1,4 @@
-package com.lvxiao.dubbo.manual.domain;
+package com.lvxiao.dubbo.manual.raw.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,8 +1,8 @@
-package com.lvxiao.dubbo.manual.client;
+package com.lvxiao.dubbo.manual.raw.client;
 
-import com.lvxiao.dubbo.manual.domain.Student;
-import com.lvxiao.dubbo.manual.handler.CallProxyHandler;
-import com.lvxiao.dubbo.manual.service.CalculateService;
+import com.lvxiao.dubbo.manual.raw.domain.Student;
+import com.lvxiao.dubbo.manual.raw.handler.CallProxyHandler;
+import com.lvxiao.dubbo.manual.raw.service.CalculateService;
 
 /**
  * @author lvxiao

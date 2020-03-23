@@ -1,4 +1,4 @@
-package com.lvxiao.dubbo.manual.handler;
+package com.lvxiao.dubbo.manual.raw.handler;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;

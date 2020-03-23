@@ -1,6 +1,6 @@
-package com.lvxiao.dubbo.manual.service;
+package com.lvxiao.dubbo.manual.raw.service;
 
-import com.lvxiao.dubbo.manual.domain.Student;
+import com.lvxiao.dubbo.manual.raw.domain.Student;
 
 /**
  * @author lvxiao
