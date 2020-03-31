@@ -12,32 +12,21 @@ public class QuickSort {
 
     /**
      * 快速排序
-     * @param arr
-     * @param head
-     * @param tail
      */
-    public static void qSort(int[] arr, int head, int tail) {
-        if (head >= tail || arr == null || arr.length <= 1) {
-            return;
+    public static void   qSort(int[] arr,int s,int e){
+        int l = s, r = e;
+        if(l < r){
+            int temp = arr[l];
+            while(l < r){
+                while(l < r && arr[r] >= temp) r--;
+                if(l < r) arr[l] = arr[r];
+                while(l < r && arr[l] < temp) l++;
+                if(l < r) arr[r] = arr[l];
+            }
+            arr[l] = temp;
+            qSort(arr,s,l);
+            qSort(arr,l + 1, e);
         }
-        int i = head, j = tail, pivot = arr[(head + tail) / 2];
-        while (i <= j) {
-            while (arr[i] < pivot) {
-                ++i;
-            }
-            while (arr[j] > pivot) {
-                --j;
-            }
-            if (i < j) {
-                int t = arr[i];
-                arr[i] = arr[j];
-                arr[j] = t;
-                ++i;
-                --j;
-            }
-        }
-        qSort(arr, head, j);
-        qSort(arr, i, tail);
     }
 
     public static void exchange(int[] sum, int i, int j) {
@@ -72,8 +61,11 @@ public class QuickSort {
     }
 
     public static void main(String[] args) {
-        int[] arr = new int[]{8,7,10,3,9,11,12,13,14};
-        quickSort3(arr, 0, arr.length - 1);
-        System.out.println(Arrays.toString(arr));
+        int[] arr = new int[]{5,2,3,1};
+
+        qSort(arr,0,arr.length-1);
+        for (int i : arr) {
+            System.out.println(i);
+        }
     }
 }
