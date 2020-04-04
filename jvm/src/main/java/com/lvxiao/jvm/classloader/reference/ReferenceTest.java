@@ -4,6 +4,7 @@ import java.lang.ref.PhantomReference;
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
+import java.util.WeakHashMap;
 
 /**
  * @author lvxiao
@@ -111,7 +112,18 @@ public class ReferenceTest {
         System.out.println(referenceQueue.poll());
     }
 
+    public static void weakHashMap() {
+        WeakHashMap<Integer, Integer> map = new WeakHashMap<>();
+        Integer i = new Integer(1);
+        map.put(i, 1);
+        System.out.println(map.get(1));
+        System.out.println("gc一下");
+        i = null;
+        System.gc();
+        System.out.println(map.get(i));
+    }
+
     public static void main(String[] args) throws InterruptedException {
-        phantom();
+        weakHashMap();
     }
 }

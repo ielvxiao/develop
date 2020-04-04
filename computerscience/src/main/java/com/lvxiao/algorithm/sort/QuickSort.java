@@ -1,6 +1,9 @@
 package com.lvxiao.algorithm.sort;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * @author lvxiao
@@ -61,11 +64,20 @@ public class QuickSort {
     }
 
     public static void main(String[] args) {
-        int[] arr = new int[]{5,2,3,1};
-
-        qSort(arr,0,arr.length-1);
-        for (int i : arr) {
-            System.out.println(i);
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < 10; i++) {
+            map.put(i, i);
+        }
+        Iterator<Map.Entry<Integer, Integer>> iterator = map.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<Integer, Integer> next = iterator.next();
+            int key = next.getKey();
+            System.out.println(key);
+            int value = next.getValue();
+            if (10 * key > 20) {
+                continue;
+            }
+            map.put(10 * key, 10 * value);
         }
     }
 }
