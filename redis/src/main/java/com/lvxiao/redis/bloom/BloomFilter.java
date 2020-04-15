@@ -1,4 +1,4 @@
-package com.lvxiao.redis;
+package com.lvxiao.redis.bloom;
 
 import com.google.common.hash.Funnels;
 import com.google.common.hash.Hashing;
@@ -27,7 +27,7 @@ public class BloomFilter {
     }
 
     public static void main(String[] args) {
-        Jedis jedis = new Jedis("localhost", 6379);
+        Jedis jedis = new Jedis("home.com", 6379);
         for (int i = 0; i < 100; i++) {
             long[] indexs = getIndexs(String.valueOf(i));
             for (long index : indexs) {
