@@ -41,7 +41,8 @@ public class Problem95 {
     }
 
     public static void main(String[] args) {
-        List<TreeNode> list = new Problem95().generateTrees(3);
-        System.out.println(list.size());
+        while (true) {
+            System.out.println("test");
+        }
     }
 }

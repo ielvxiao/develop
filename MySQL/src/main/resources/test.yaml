@@ -1,0 +1,38 @@
+# 数据源配置
+dataSources:
+  #可配置多个: !!数据库连接池实现类
+  ds_0: !!com.alibaba.druid.pool.DruidDataSource
+    #数据库驱动类名
+    driverClassName: com.mysql.jdbc.Driver
+    #数据库url连接
+    url: jdbc:mysql://127.0.0.1:3306/ds_0?nullNamePatternMatchesAll=true
+    #数据库用户名
+    username: root
+    #数据库密码
+    password: root
+  ds_1: !!com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/ds_1?nullNamePatternMatchesAll=true
+    username: root
+    password: root
+
+#分库分表配置，可配置多个logic_table_name
+shardingRule:
+  tables:
+    t_order:
+      keyGeneratorColumnName: order_id
+      actualDataNodes: ds_${0..1}.t_order_${0..1}
+      databaseStrategy:
+        inline:
+          shardingColumn: user_id
+          algorithmExpression: ds_${user_id % 2}
+      tableStrategy:
+        inline:
+          shardingColumn: order_id
+          algorithmExpression: t_order_${order_id % 2}
+
+  #属性配置(可选)
+  props:
+    #是否开启SQL显示，默认值: false
+    sql.show: true
+    #executor.size: 工作线程数量，默认值: CPU核数
