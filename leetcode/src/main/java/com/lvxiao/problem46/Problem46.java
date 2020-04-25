@@ -20,10 +20,10 @@ public class Problem46 {
 
 
     private void backTracking(int[] nums, List<Integer> tmp, List<List<Integer>> res) {
+        if (tmp.size() == nums.length) {
+            res.add(new ArrayList<>(tmp));
+        }
         for (int i = 0; i < nums.length; i++) {
-            if (tmp.size() == nums.length) {
-                res.add(new ArrayList<>(tmp));
-            }
             if (tmp.contains(nums[i])) {
                 continue;
             }
