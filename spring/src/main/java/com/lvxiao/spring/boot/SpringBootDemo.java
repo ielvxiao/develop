@@ -1,5 +1,7 @@
 package com.lvxiao.spring.boot;
 
+import com.lvxiao.Starter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
@@ -18,9 +20,12 @@ public class SpringBootDemo {
         SpringApplication.run(SpringBootDemo.class);
     }
 
+    @Autowired
+    private Starter starter;
+
     @GetMapping("/index")
     @ResponseBody
     public String index() {
-        return "spring boot";
+        return starter.toString();
     }
 }
