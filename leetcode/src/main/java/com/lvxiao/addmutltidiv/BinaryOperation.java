@@ -85,7 +85,7 @@ public class BinaryOperation {
                 res = (res << 1) | 1;
                 aux = binaryAdd(aux, -b);
             } else {
-                res = (res << 1) | 0;
+                res = (res << 1);
             }
             mask >>= 1;
 

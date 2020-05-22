@@ -30,6 +30,7 @@ public class SynchronousQueueExample {
                     String data = UUID.randomUUID().toString();
                     System.out.println("Put: " + data);
                     blockingQueue.put(data);
+                    System.out.println("-=");
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -84,13 +85,6 @@ public class SynchronousQueueExample {
         /*
         传入ArrayBlockingQueue则该队列可以最多储存10个任务，超过该任务数，put阻塞。如果队列为空，则take阻塞。
          */
-        ArrayBlockingQueue<String> arrayBlockingQueue = new ArrayBlockingQueue<String>(10);
-        SynchronousQueueProducer queueProducer = new SynchronousQueueProducer(
-                arrayBlockingQueue);
-        new Thread(queueProducer).start();
-        TimeUnit.MILLISECONDS.sleep(1000);
-        SynchronousQueueConsumer queueConsumer2 = new SynchronousQueueConsumer(
-                arrayBlockingQueue);
-        new Thread(queueConsumer2).start();
+
     }
 }
