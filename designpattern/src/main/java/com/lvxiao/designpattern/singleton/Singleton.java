@@ -54,15 +54,16 @@ public class Singleton {
      * 上一个版本的改造版，依然存在问题。new Singleton()不是原子操作，存在指令重排序的问题。所以可能存在返回Null的情况。解决办法是加volatile关键字
      * @return
      */
+    private static volatile Singleton ourInstance1;
     public static Singleton getInstance2() {
-        if (ourInstance == null) {
+        if (ourInstance1 == null) {
             synchronized (Singleton.class) {
-                if (ourInstance == null) {
+                if (ourInstance1 == null) {
                     return new Singleton();
                 }
             }
         }
-        return ourInstance;
+        return ourInstance1;
     }
 
     /**
