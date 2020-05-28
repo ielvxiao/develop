@@ -6,7 +6,8 @@ package com.lvxiao.problem974;
  */
 public class Problem974 {
     public static void main(String[] args) {
-        System.out.println(new Problem974().subarraysDivByK(new int[]{4, 5, 0, -2, -3, 1}, 5));
+//        System.out.println(new Problem974().subarraysDivByK(new int[]{4, 5, 0, -2, -3, 1}, 5));
+        System.out.println(Math.ceil(4/3.0));
     }
     public int subarraysDivByK(int[] A, int K) {
         int sum = 0, counter = 0;
