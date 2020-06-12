@@ -1,5 +1,6 @@
 package com.lvxiao.problem15;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,36 +12,40 @@ import java.util.List;
  * @date 2019-07-15 22:24
  */
 public class Problem15 {
+    public static void main(String[] args) {
+        System.out.println(new Problem15().threeSum(new int[]{0,0,0,0}));
+    }
     public List<List<Integer>> threeSum(int[] nums) {
         //进行排序
         Arrays.sort(nums);
         List<List<Integer>> result = new ArrayList<>();
-        //循环加
         for (int i = 0; i < nums.length-2; i++) {
-            if (nums[i] > 0) {
+            int first = nums[i];
+            if (i > 0 && first == nums[i - 1]) {
                 continue;
             }
-            if (i > 0 && nums[i] == nums[i - 1]) {
-                continue;
+            if (first > 0) {
+                return result;
             }
-            int L = i + 1;
-            int R = nums.length - 1;
-            while (L < R) {
-                int sum = nums[i] + nums[L] + nums[R];
-                if (sum == 0) {
-                    result.add(Arrays.asList(nums[i], nums[L], nums[R]));
-                    while (L < R && nums[R] == nums[R - 1]) {
-                        R--;
+            int left = i + 1;
+            int right = nums.length - 1;
+            while (left < right) {
+                if (nums[left] + nums[right] + first==0) {
+                    result.add(Arrays.asList(first, nums[left], nums[right]));
+                    while (left < right && nums[left] == nums[left + 1]) {
+                        left++;
                     }
-                    while (L < R && nums[L] == nums[L + 1]) {
-                        L++;
+                    while (left < right && nums[right] == nums[right - 1]) {
+                        right--;
                     }
-                    R--;
-                    L++;
-                } else if (sum < 0) {
-                    L++;
-                } else {
-                    R--;
+                    left++;
+                    right--;
+                }
+                while (left < right && nums[left] + nums[right] + first < 0) {
+                    left++;
+                }
+                while (left < right && nums[left] + nums[right] + first > 0) {
+                    right--;
                 }
             }
         }
@@ -78,7 +83,5 @@ public class Problem15 {
         partaion(nums, head, tail - 1);
     }
 
-    public static void main(String[] args) {
 
-    }
 }
