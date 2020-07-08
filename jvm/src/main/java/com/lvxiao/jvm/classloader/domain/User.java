@@ -13,6 +13,8 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 public class User implements Serializable {
+    //需要添加serialVersionUID，无serialVersionUID时添加一个默认值
+    private static final long serialVersionUID = 1L;
     private Integer id;
     private String name;
 
