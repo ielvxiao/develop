@@ -1,6 +1,0 @@
-debug: true
-example:
-  service:
-    enabled: true
-    prefix: 我是一个前缀
-    suffix: 我是一个后缀
