@@ -1,3 +1,8 @@
+#spring:
+#  cache:
+#    caffeine:
+#      spec: initialCapacity=10,maximumSize=200,expireAfterWrite=30s
+#    type: caffeine
 debug: true
 example:
   service:
