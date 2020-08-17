@@ -2,7 +2,6 @@ package com.lvxiao.spring.boot.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * forward（转发）：
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
  * @author lvxiao
  * @date 2020/8/17
  */
+//@RestController  如果返回的是地址等信息不应该设置RestController因为这个注解返回的信息会被放到response body里
 @Controller
 public class ForwardAndRedirectController {
 
