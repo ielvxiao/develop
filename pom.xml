@@ -33,6 +33,7 @@
         <module>dubbo</module>
         <module>MySQL</module>
         <module>my-starter</module>
+        <module>proto</module>
     </modules>
 
     <dependencies>
