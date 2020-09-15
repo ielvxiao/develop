@@ -15,7 +15,6 @@
     </parent>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <sharding-sphere.version>5.0.0-RC1-SNAPSHOT</sharding-sphere.version>
     </properties>
 
     <modules>
@@ -34,6 +33,7 @@
         <module>MySQL</module>
         <module>my-starter</module>
         <module>proto</module>
+        <module>systemDesign</module>
     </modules>
 
     <dependencies>
@@ -65,6 +65,12 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.60</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>29.0-jre</version>
         </dependency>
     </dependencies>
 
