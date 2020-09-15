@@ -11,6 +11,9 @@
 
     <artifactId>MySQL</artifactId>
 
+    <properties>
+        <sharding-sphere.version>4.1.1</sharding-sphere.version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.apache.shardingsphere</groupId>
