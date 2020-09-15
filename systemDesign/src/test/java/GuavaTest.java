@@ -43,4 +43,36 @@ public class GuavaTest {
         // then
         assertTrue(elapsedTimeSeconds >= 10);
     }
+
+    @Test
+    public void testSmoothBursty2() {
+        RateLimiter r = RateLimiter.create(5);
+        while (true)
+        {
+            System.out.println("get 1 tokens: " + r.acquire(1) + "s");
+            try {
+                Thread.sleep(1300);
+            } catch (Exception e) {}
+            //如果有n个permits，则再等待超过1+1/n秒后，则可以直接获取1+n个permits
+            System.out.println("get 1 tokens: " + r.acquire(1) + "s");
+            System.out.println("get 1 tokens: " + r.acquire(1) + "s");
+            System.out.println("get 1 tokens: " + r.acquire(1) + "s");
+            System.out.println("get 1 tokens: " + r.acquire(1) + "s");
+            System.out.println("get 1 tokens: " + r.acquire(1) + "s");
+            System.out.println("get 1 tokens: " + r.acquire(1) + "s");
+            System.out.println("end");
+            /**
+             * output:
+             * get 1 tokens: 0.0s
+             * get 1 tokens: 0.0s
+             * get 1 tokens: 0.0s
+             * get 1 tokens: 0.0s
+             * end
+             * get 1 tokens: 0.499796s
+             * get 1 tokens: 0.0s
+             * get 1 tokens: 0.0s
+             * get 1 tokens: 0.0s
+             */
+        }
+    }
 }
