@@ -5,4 +5,5 @@ package com.lvxiao.multithread;
  * Created on 2020-09-11
  */
 public class RebaseTest1 {
+
 }
