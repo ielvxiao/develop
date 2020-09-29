@@ -25,7 +25,7 @@ public class DclTest {
         if (singleton == null) {
             synchronized (DclTest.class) {
                 if (singleton == null) {
-                    return new DclTest();
+                    singleton = new DclTest();
                 }
             }
         }

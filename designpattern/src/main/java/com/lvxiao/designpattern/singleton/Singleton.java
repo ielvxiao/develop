@@ -34,7 +34,7 @@ public class Singleton {
      */
     public static Singleton getInstance() {
         if (ourInstance == null) {
-            return new Singleton();
+            ourInstance = new Singleton();
         }
         return ourInstance;
     }
@@ -45,7 +45,7 @@ public class Singleton {
      */
     public synchronized static Singleton getInstance1() {
         if (ourInstance == null) {
-            return new Singleton();
+            ourInstance = new Singleton();
         }
         return ourInstance;
     }
@@ -59,7 +59,7 @@ public class Singleton {
         if (ourInstance1 == null) {
             synchronized (Singleton.class) {
                 if (ourInstance1 == null) {
-                    return new Singleton();
+                    ourInstance = new Singleton();
                 }
             }
         }
