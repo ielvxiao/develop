@@ -16,6 +16,6 @@ public class ImmutableCollectionTest {
             set.add(i);
         }
         ImmutableSet<Integer> integers = ImmutableSet.copyOf(set);
-        integers.add(1);
+        integers.add(1); //异常，因为是不可变集合
     }
 }
