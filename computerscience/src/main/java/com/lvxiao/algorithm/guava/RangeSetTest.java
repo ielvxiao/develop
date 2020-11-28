@@ -1,5 +1,11 @@
 package com.lvxiao.algorithm.guava;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+
+import org.apache.commons.lang3.tuple.Pair;
+
+import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Range;
 import com.google.common.collect.RangeSet;
 import com.google.common.collect.TreeRangeSet;
@@ -10,9 +16,8 @@ import com.google.common.collect.TreeRangeSet;
  */
 public class RangeSetTest {
     public static void main(String[] args) {
-        RangeSet<Integer> set = TreeRangeSet.create();
-        set.add(Range.closed(1, 100));
-        System.out.println(set.contains(10)); //true
-        System.out.println(set.encloses(Range.openClosed(1, 100)));
+        Pair<Integer, Integer> pair = JSON.parseObject("(1,2)", Pair.class);
+        System.out.println(pair.getLeft());
+        System.out.println(pair.getRight());
     }
 }

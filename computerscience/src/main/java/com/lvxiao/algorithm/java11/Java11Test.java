@@ -1,6 +1,7 @@
 package com.lvxiao.algorithm.java11;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * //增加ZGC一般情况下这个垃圾收集器能把停顿时间降低到10ms以下
@@ -18,25 +19,10 @@ public class Java11Test {
 
     public static void main(String[] args) {
         //本地变量var，有类型推断的能力。但是不能定义在类中
-        var map = new HashMap<>();
+        Map map = new HashMap<>();
         map.put(1, 2);
 
         //java11增加了一些很实用的方法
-        String str = "woshidage";
-        boolean isblank = str.isBlank();  //判断字符串是空白
-        boolean isempty = str.isEmpty();  //判断字符串是否为空
-        String  result1 = str.strip();    //首位空白
-        String  result2 = str.stripTrailing();  //去除尾部空白
-        String  result3 = str.stripLeading();  //去除首部空白
-        String  copyStr = str.repeat(2);  //复制几遍字符串
-        long  lineCount = str.lines().count();  //行数统计
-        System.out.println(isblank);
-        System.out.println(isempty);
-        System.out.println(result1);
-        System.out.println(result2);
-        System.out.println(result3);
-        System.out.println(copyStr);
-        System.out.println(lineCount);
 
     }
 }
