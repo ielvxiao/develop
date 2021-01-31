@@ -31,7 +31,7 @@ public class NettyDemo {
     private static class EchoServerHandler extends ChannelInboundHandlerAdapter {
         @Override
         public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-            var in = (ByteBuf) msg;
+            ByteBuf in = (ByteBuf) msg;
             System.out.println("Server received:" + in.toString(CharsetUtil.UTF_8));
             //将受到的消息写给发送者， 而不冲刷出站消息
             ctx.write(in);
@@ -54,10 +54,10 @@ public class NettyDemo {
 
     private static class EchoServer {
         private static void startServer(int port) throws InterruptedException {
-            var serverHandler = new EchoServerHandler();
-            var group = new NioEventLoopGroup();
+            EchoServerHandler serverHandler = new EchoServerHandler();
+            NioEventLoopGroup group = new NioEventLoopGroup();
             try {
-                var b = new ServerBootstrap();
+                ServerBootstrap b = new ServerBootstrap();
                 b.group(group)
                         .channel(NioServerSocketChannel.class)  //指定Channel类型
                         .localAddress(new InetSocketAddress(port))
@@ -67,7 +67,7 @@ public class NettyDemo {
                                 ch.pipeline().addLast(serverHandler);
                             }
                         });
-                var future = b.bind().sync();   //异步绑定服务器
+                ChannelFuture future = b.bind().sync();   //异步绑定服务器
                 future.channel().closeFuture().sync();  //获取closeFuture并且阻塞当前线程直到结束
             } finally {
                 group.shutdownGracefully().sync(); //关闭EventLoopGroup释放所有资源
@@ -102,9 +102,9 @@ public class NettyDemo {
 
     private static class EchoClient {
         public static void startClient(String host, int port) throws InterruptedException {
-            var g = new NioEventLoopGroup();
+            NioEventLoopGroup g = new NioEventLoopGroup();
             try {
-                var b = new Bootstrap();
+                Bootstrap b = new Bootstrap();
                 b.group(g)
                         .channel(NioSocketChannel.class) //与server的不同
                         .remoteAddress(new InetSocketAddress(host, port))
@@ -114,7 +114,7 @@ public class NettyDemo {
                                 ch.pipeline().addLast(new EchoClientHandler());
                             }
                         });
-                var f = b.connect().sync();
+                ChannelFuture f = b.connect().sync();
                 f.channel().closeFuture().sync();
             } finally {
                 g.shutdownGracefully().sync();
