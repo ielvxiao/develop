@@ -16,8 +16,8 @@ public class BigDecimalTest {
         double value = 0.1d;
 
         BigDecimal bigDecimal
-               // = new BigDecimal(value);// 直接使用double入参会出现问题  最后的bigdecimal值是0.1000000000000000055511151231257827021181583404541015625
-                = BigDecimal.valueOf(value);
+                = new BigDecimal(value);// 直接使用double入参会出现问题  最后的bigdecimal值是0.1000000000000000055511151231257827021181583404541015625
+//                = BigDecimal.valueOf(value);
         System.out.println(bigDecimal);
 
         /*
