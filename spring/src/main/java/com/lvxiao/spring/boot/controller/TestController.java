@@ -1,11 +1,13 @@
 package com.lvxiao.spring.boot.controller;
 
-import com.lvxiao.Starter;
-import com.lvxiao.spring.boot.service.CacheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.lvxiao.Starter;
+import com.lvxiao.spring.boot.service.CacheService;
+import com.lvxiao.spring.boot.service.impl.TestLazyServiceImpl;
 
 /**
  * @author lvxiao
@@ -17,6 +19,8 @@ public class TestController {
     private Starter starter;
     @Autowired
     private CacheService cacheService;
+    @Autowired
+    private TestLazyServiceImpl testLazyService;
 
     @GetMapping({"/", "/index"})
     @ResponseBody
@@ -42,4 +46,9 @@ public class TestController {
         return str;
     }
 
+    @GetMapping("/test")
+    @ResponseBody
+    public String test() {
+        return testLazyService.test();
+    }
 }
