@@ -17,10 +17,13 @@ public class TestLazyServiceImpl {
     @PostConstruct
     public void init() {
         System.out.println("TestLazyServiceImpl被加载了");
+        testPostConstract1.test();
     }
 
     @Autowired
     private TestLazyServiceImpl2 testLazyServiceImpl2;
+    @Autowired
+    private TestPostConstract1Impl testPostConstract1;
 
     public String test() {
         return testLazyServiceImpl2.test();

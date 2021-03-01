@@ -19,7 +19,7 @@ public class WatcherLearn {
     public static void main(String[] args) throws KeeperException, InterruptedException {
         ZooKeeper zooKeeper = ZookeeperConnection.getConnection();
         // 定义父子类节点路径
-        String rootPath = "/nodeRoot";
+        String rootPath = "/nodeRoot2";
         String child1Path = rootPath + "/nodeChildren1";
         String child2Path = rootPath + "/nodeChildren2";
 
