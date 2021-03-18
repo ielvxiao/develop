@@ -12,7 +12,7 @@
     <artifactId>elasticsearch</artifactId>
 
     <properties>
-        <elasticsearch-version>6.4.3</elasticsearch-version>
+        <elasticsearch-version>7.11.2</elasticsearch-version>
     </properties>
     <dependencies>
         <!-- Elasticsearch核心依赖包 -->
