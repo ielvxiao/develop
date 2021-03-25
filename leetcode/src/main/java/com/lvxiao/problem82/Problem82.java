@@ -10,38 +10,18 @@ import com.lvxiao.DataStructHelper.ListNode;
  */
 public class Problem82 {
     public ListNode deleteDuplicates(ListNode head) {
-        if (head == null) {
+        if (head == null || head.next == null) {
             return head;
         }
-        ListNode slow = head, fast = head.next;
-        while (fast != null) {
-            //这种情况是开头时候出现的
-            if (slow.val == fast.val) {
-                fast = fast.next;
-                while (fast != null && slow.val == fast.val) {
-                    fast = fast.next;
-                }
-                slow = fast;
-                if (fast == null) {
-                    return slow;
-                }
-                head = slow;
-                fast = fast.next;
-            } else {
-                //已结束判断
-                if (fast.next == null) {
-                    return head;
-                } else if (fast.next.val != fast.val) { //后边也是不相等
-                    slow = fast;
-                    fast = fast.next;
-                } else {    //出现相等的节点
-                    while (fast.next != null && fast.next.val == fast.val) {
-                        fast = fast.next;
-                    }
-                    slow.next = fast.next;
-                    fast = fast.next;
-                }
+        ListNode next = head.next;
+        if (head.val == next.val) {
+            while (next != null && head.val == next.val) {
+                head = next;
+                next = next.next;
             }
+            head = deleteDuplicates(next);
+        } else {
+            head.next = deleteDuplicates(next);
         }
         return head;
     }
