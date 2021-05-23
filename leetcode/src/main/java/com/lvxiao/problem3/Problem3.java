@@ -7,6 +7,7 @@ import java.util.Set;
 
 /**
  * 3. Longest Substring Without Repeating Characters
+ *
  * @author lvxiao
  * @version V1.0
  * @date 2019-07-20 12:08
@@ -15,6 +16,7 @@ public class Problem3 {
 
     /**
      * 存在超超时问题
+     *
      * @param s
      * @return
      */
@@ -38,6 +40,7 @@ public class Problem3 {
 
     /**
      * 滑动窗口解法
+     *
      * @param s
      * @return
      */
@@ -47,18 +50,31 @@ public class Problem3 {
         int ans = 0, i = 0, j = 0;
         while (i < n && j < n) {
             // try to extend the range [i, j]
-            if (!set.contains(s.charAt(j))){
+            if (!set.contains(s.charAt(j))) {
                 set.add(s.charAt(j++));
                 ans = Math.max(ans, j - i);
-            }
-            else {
+            } else {
                 set.remove(s.charAt(i++));
             }
         }
         return ans;
     }
 
+    /**
+     * 滑动窗口优化，因为滑动窗口寻找窗口内字符串的时候
+     */
+    public int lengthOfLongestSubstring2(String s) {
+        int[] hash = new int[128];  //每个字符对应的位置
+        int res = 0;
+        for (int j = 0, i = 0; j < s.length(); j++) {
+            i = Math.max(i, hash[s.charAt(j)]);
+            res = Math.max(j - i + 1, res);
+            hash[s.charAt(j)] = j + 1;//index从1开始，防止默认0出问题
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
-        System.out.println(new Problem3().lengthOfLongestSubstring("aaaaaa"));
+        System.out.println(new Problem3().lengthOfLongestSubstring2("abcabcbb"));
     }
 }
