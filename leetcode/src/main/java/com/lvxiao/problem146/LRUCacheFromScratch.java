@@ -8,13 +8,13 @@ import java.util.Map;
  * Created on 2021-05-29
  */
 public class LRUCacheFromScratch {
-    static CacheNode head = new CacheNode();
-    static CacheNode tail = new CacheNode();
+    CacheNode head = new CacheNode();
+    CacheNode tail = new CacheNode();
 
     Map<Integer, CacheNode> map;
     int size;
 
-    static class CacheNode {
+    class CacheNode {
         int key;
         int val;
         CacheNode pre;
@@ -56,12 +56,14 @@ public class LRUCacheFromScratch {
             map.remove(removeKey);
         }
     }
-    private int  removeTail() {
+
+    private int removeTail() {
         CacheNode node = tail.pre;
         tail.pre = node.pre;
         node.pre.next = node.next;
         return node.key;
     }
+
     private void moveToHead(CacheNode node) {
         node.pre.next = node.next;
         node.next.pre = node.pre;
