@@ -12,20 +12,29 @@ public class Problem300 {
     public int lengthOfLIS(int[] nums) {
         //保存最长子序列的tail
         int[] tails = new int[nums.length];
-        int len = 0;
-        for (int num : nums) {
-            int low=0,hi = len;
-            int idx = Arrays.binarySearch(tails, 0, len, num);
-            idx = idx < 0 ? -idx - 1 : idx;
-            tails[idx] = num;
-            if (idx == len) {
-                len++;
+        tails[0] = nums[0];
+        int len = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] > tails[len - 1]) {
+                tails[len++] = nums[i];
+            } else {
+                int start = 0;
+                int end = len - 1;
+                while (start <= end) {
+                    int mid = (start + end) >>> 1;
+                    if (tails[mid] > nums[i]) {
+                        end = mid - 1;
+                    } else {
+                        start = mid + 1;
+                    }
+                }
+                tails[start] = nums[i];
             }
         }
         return len;
     }
+
     public static void main(String[] args) {
-        int[] arr = new int[]{1, 3, 5, 7};
-        System.out.println(Arrays.binarySearch(arr, 0));
+        System.out.println(new Problem300().lengthOfLIS(new int[]{10, 9, 2, 5, 3, 7, 101, 18}));
     }
 }
