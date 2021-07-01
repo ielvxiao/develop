@@ -7,6 +7,7 @@ import java.util.*;
 
 /**
  * 23. Merge k Sorted Lists
+ *
  * @author lvxiao
  * @date 2019/8/2
  */
@@ -15,33 +16,39 @@ public class Problem23 {
         if (lists.length == 0) {
             return null;
         }
-        PriorityQueue<ListNode> queue = new PriorityQueue<>((o1, o2) -> {
-            if (o1.val < o2.val){
-                return -1;
-            }
-            else if (o1.val == o2.val){
-                return 0;
-            }
-            else{
-                return 1;
-            }
-        });
-        for (ListNode node : lists) {
-            if (node != null) {
-                queue.add(node);
-            }
+        if (lists.length == 1) {
+            return lists[0];
         }
-        ListNode res = new ListNode(-1);
-        ListNode tmp = res;
-        while (!queue.isEmpty()) {
-            ListNode node = queue.poll();
-            tmp.next = node;
-            tmp = node;
-            node = node.next;
-            if (node != null) {
-                queue.add(node);
-            }
+        if (lists.length == 2) {
+            return mergeNode(lists[0], lists[1]);
         }
-        return res.next;
+        int mid = lists.length / 2;
+        ListNode[] nodeArr1 = new ListNode[mid];
+        System.arraycopy(lists, 0, nodeArr1, 0, mid);
+        ListNode[] nodeArr2 = new ListNode[lists.length - mid];
+        System.arraycopy(lists, mid, nodeArr2, 0, lists.length - mid);
+        return mergeNode(mergeKLists(nodeArr1), mergeKLists(nodeArr2));
+    }
+
+    private ListNode mergeNode(ListNode n1, ListNode n2) {
+        if (n1 == null) {
+            return n2;
+        }
+        if (n2 == null) {
+            return n1;
+        }
+        if (n1.val <= n2.val) {
+            n1.next = mergeNode(n1.next, n2);
+            return n1;
+
+        } else {
+            n2.next = mergeNode(n2.next, n1);
+
+            return n2;
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new Problem23().mergeKLists(new ListNode[]{DataUtils.listNodeCreate(new int[]{1, 4, 5}), DataUtils.listNodeCreate(new int[]{1, 3, 4}), DataUtils.listNodeCreate(new int[]{2, 6})}));
     }
 }
