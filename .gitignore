@@ -7,3 +7,4 @@
 *.class
 *.jar
 **/rebel.xml
+.DS_Store
