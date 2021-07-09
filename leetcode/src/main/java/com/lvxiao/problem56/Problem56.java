@@ -15,19 +15,20 @@ public class Problem56 {
         if (intervals == null || intervals.length <= 1) {
             return intervals;
         }
-        List<int[]> arr = new ArrayList<>();
         Arrays.sort(intervals, Comparator.comparingInt(o -> o[0]));
+        List<int[]> res = new ArrayList<>();
         for (int i = 0; i < intervals.length; i++) {
-            if (arr.size() == 0 || arr.get(arr.size() - 1)[1] < intervals[i][0]) {
-                arr.add(intervals[i]);
-            } else if (arr.get(arr.size() - 1)[1] >= intervals[i][0] && arr.get(arr.size() - 1)[1] < intervals[i][1]) {
-                arr.get(arr.size() - 1)[1] = intervals[i][1];
+            int i1;
+            if (i > 0 && intervals[i][0] <= (i1 = res.get(res.size() - 1)[1])) {
+                res.get(res.size() - 1)[1] = Math.max(intervals[i][1], i1);
+            } else {
+                res.add(intervals[i]);
             }
         }
-        return arr.toArray(new int[arr.size()][]);
+        return res.toArray(new int[res.size()][2]);
     }
 
     public static void main(String[] args) {
-        new Problem56().merge(new int[][]{{1, 3}, {2, 6}, {8, 10}, {15, 18}});
+        System.out.println(Arrays.deepToString(new Problem56().merge(new int[][] {{2, 3}, {4, 5}, {6, 7}, {1, 18}})));
     }
 }
