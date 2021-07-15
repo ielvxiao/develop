@@ -1,6 +1,7 @@
 package com.lvxiao.problem31;
 
 import java.util.Arrays;
+import java.util.BitSet;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
@@ -10,9 +11,9 @@ import java.util.TreeMap;
  */
 class Main {
     public static void main(String[] args) {
-        int[] nums = {1,3,2};
-        new Problem31().nextPermutation(nums);
-        System.out.println(Arrays.toString(Arrays.stream(nums).toArray()));
+        BitSet bitSet = new BitSet();
+        bitSet.set(255, true);
+        System.out.println(bitSet.get(64));
     }
 }
 
