@@ -9,25 +9,41 @@ import java.util.List;
  * @date 2020/1/10 4:44 下午
  */
 public class Problem54 {
-    public List < Integer > spiralOrder(int[][] matrix) {
-        List ans = new ArrayList();
-        if (matrix.length == 0)
-            return ans;
-        int r1 = 0, r2 = matrix.length - 1;
-        int c1 = 0, c2 = matrix[0].length - 1;
-        while (r1 <= r2 && c1 <= c2) {
-            for (int c = c1; c <= c2; c++) ans.add(matrix[r1][c]);
-            for (int r = r1 + 1; r <= r2; r++) ans.add(matrix[r][c2]);
-            if (r1 < r2 && c1 < c2) {
-                for (int c = c2 - 1; c > c1; c--) ans.add(matrix[r2][c]);
-                for (int r = r2; r > r1; r--) ans.add(matrix[r][c1]);
+    public List<Integer> spiralOrder(int[][] matrix) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+        int left = 0;
+        int right = n - 1;
+        int top = 0;
+        int bottom = m - 1;
+        List<Integer> list = new ArrayList<>();
+        while (left <= right && top <= bottom) {
+            for (int i = left; i <= right; i++) {
+                list.add(matrix[top][i]);
             }
-            r1++;
-            r2--;
-            c1++;
-            c2--;
+            if (++top > bottom) {
+                break;
+            }
+            for (int i = top; i <= bottom; i++) {
+                list.add(matrix[i][right]);
+            }
+            if (--right < left) {
+                break;
+            }
+            for (int i = right; i >= left; i--) {
+                list.add(matrix[bottom][i]);
+            }
+            if (--bottom < top) {
+                break;
+            }
+            for (int i = bottom; i >= top; i--) {
+                list.add(matrix[i][left]);
+            }
+            if (++left > right) {
+                break;
+            }
         }
-        return ans;
+        return list;
     }
 
 

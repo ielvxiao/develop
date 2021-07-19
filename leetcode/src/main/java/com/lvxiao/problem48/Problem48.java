@@ -18,24 +18,30 @@ public class Problem48 {
             return;
         }
         int n = matrix.length;
+        final int m = matrix[0].length;
         for (int i = 0; i < n / 2; i++) {
-            for (int j = i; j < n - 1 - i; j++) {
-                int tmp_b = matrix[j][n - 1 - i];
-                matrix[j][n - 1 - i] = matrix[i][j];
-                int tmp_c = matrix[n - 1 - i][n - 1 - j];
-                matrix[n - 1 - i][n - 1 - j] = tmp_b;
-                int tmp_d = matrix[n - 1 - j][i];
-                matrix[n - 1 - j][i] = tmp_c;
-                matrix[i][j] = tmp_d;
+            for (int j = 0; j < m; j++) {
+                int tmp = matrix[i][j];
+                matrix[i][j] = matrix[n - 1 - i][j];
+                matrix[n - 1 - i][j] = tmp;
             }
         }
+        for (int i = 0; i < n; i++) {
+            for (int j = i; j < m; j++) {
+                int tmp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = tmp;
+            }
+        }
+        System.out.println(1);
     }
 
     public static void main(String[] args) {
-        new Problem48().rotate(new int[][]{
+        final int[][] matrix = {
                 {1, 2, 3},
                 {4, 5, 6},
                 {7, 8, 9}
-        });
+        };
+        new Problem48().rotate(matrix);
     }
 }
