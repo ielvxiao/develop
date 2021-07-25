@@ -9,6 +9,32 @@ import com.lvxiao.DataStructHelper.ListNode;
  * @date 2019/12/27 5:21 下午
  */
 public class Problem25 {
+    //不用递归解法
+    public ListNode reverseKGroup1(ListNode head, int k) {
+        ListNode dummy = new ListNode(-1, head);
+        ListNode tmp = dummy;
+        out:
+        while (head != null) {
+            for (int i = 0; i < k; i++) {
+                if (head == null) {
+                    break out;
+                }
+                head = head.next;
+            }
+            ListNode old = tmp.next;
+            for (int i = 0; i < k - 1; i++) {
+                ListNode next = old.next;
+                ListNode nextnext = next.next;
+                next.next = tmp.next;
+                old.next = nextnext;
+                tmp.next = next;
+            }
+            for (int i = 0; i < k; i++) {
+                tmp = tmp.next;
+            }
+        }
+        return dummy.next;
+    }
     /**
      * 翻转链表[a,b)
      * @param a
