@@ -29,6 +29,28 @@ public class Problem22 {
         }
     }
 
+    public List<String> generateParenthesis1(int n) {
+        List<String> list = new ArrayList<>();
+        backTrack(list, new StringBuilder(), n, 0, 0);
+        return list;
+    }
+
+    private void backTrack(List<String> list, StringBuilder sb, int n, int left, int right) {
+        if (sb.length() == n * 2) {
+            list.add(sb.toString());
+        }
+
+        if (left < n) {
+            sb.append('(');
+            backTrack(list, sb, n, left + 1, right);
+            sb.deleteCharAt(sb.length() - 1);
+        }
+        if (right < left) {
+            sb.append(')');
+            backTrack(list, sb, n, left, right + 1);
+            sb.deleteCharAt(sb.length() - 1);
+        }
+    }
     public static void main(String[] args) {
         List<String> list = new Problem22().generateParenthesis(3);
         for (String s : list) {
