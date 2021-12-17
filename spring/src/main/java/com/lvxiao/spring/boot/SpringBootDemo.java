@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @version V1.0
  * @date 2020/1/9 2:03 下午
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.lvxiao.spring.boot")
 public class SpringBootDemo {
     public static void main(String[] args) {
         SpringApplication.run(SpringBootDemo.class);
