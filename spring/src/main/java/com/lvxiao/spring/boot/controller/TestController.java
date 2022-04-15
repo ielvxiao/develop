@@ -1,14 +1,15 @@
 package com.lvxiao.spring.boot.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
+import com.lvxiao.Starter;
+import com.lvxiao.spring.boot.service.CacheService;
+import com.lvxiao.spring.boot.service.impl.TestLazyServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.lvxiao.Starter;
-import com.lvxiao.spring.boot.service.CacheService;
-import com.lvxiao.spring.boot.service.impl.TestLazyServiceImpl;
 
 /**
  * @author lvxiao
@@ -25,7 +26,8 @@ public class TestController {
 
     @GetMapping({"/", "/index"})
     @ResponseBody
-    public String index() {
+    public String index(HttpServletRequest request) {
+        System.out.println(request.getRequestURI());
         return starter.toString();
     }
 

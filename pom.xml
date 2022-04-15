@@ -35,6 +35,7 @@
         <module>proto</module>
         <module>systemDesign</module>
         <module>util</module>
+        <module>logback-test</module>
     </modules>
 
     <dependencies>

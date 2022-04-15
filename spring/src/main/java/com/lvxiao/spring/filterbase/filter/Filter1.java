@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
  * Created on 2021-01-09
  */
 @Component
-@Order(1)
+@Order(2)
 public class Filter1 implements Filter {
     private static final Logger logger = LoggerFactory.getLogger(Filter1.class);
 
