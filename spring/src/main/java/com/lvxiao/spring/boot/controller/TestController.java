@@ -1,12 +1,19 @@
 package com.lvxiao.spring.boot.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import com.lvxiao.Starter;
+import com.lvxiao.spring.bean.BeanA;
+import com.lvxiao.spring.bean.BeanB;
 import com.lvxiao.spring.boot.service.CacheService;
 import com.lvxiao.spring.boot.service.impl.TestLazyServiceImpl;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -58,5 +65,26 @@ public class TestController {
     @GetMapping("/testRe")
     public String a1(@RequestParam(value = "h_h") String hh) {
         return hh;
+    }
+
+    @GetMapping(path = {"/a/{p}", "a/{p}.mp4"})
+    public void testm(@PathVariable Long p) {
+        System.out.println(p);
+    }
+
+    public static void main(String[] args) {
+        BeanA beanA = new BeanA();
+        List<BeanA> list = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            BeanA tmp = new BeanA();
+            tmp.setAnInt(i);
+            list.add(tmp);
+        }
+        beanA.setList(list);
+        BeanB beanB = new BeanB();
+        BeanUtils.copyProperties(beanA, beanB);
+        for (BeanB b : beanB.getList()) {
+            System.out.println(b.getAnInt());
+        }
     }
 }
