@@ -18,24 +18,9 @@
     </properties>
 
     <modules>
-        <module>leetcode</module>
-        <module>reflect</module>
-        <module>designpattern</module>
-        <module>multithread</module>
         <module>spring</module>
-        <module>jvm</module>
-        <module>redis</module>
-        <module>computerscience</module>
-        <module>elasticsearch</module>
-        <module>zookeeper</module>
-        <module>netty</module>
-        <module>dubbo</module>
-        <module>MySQL</module>
         <module>my-starter</module>
-        <module>proto</module>
-        <module>systemDesign</module>
         <module>util</module>
-        <module>logback-test</module>
     </modules>
 
     <dependencies>
